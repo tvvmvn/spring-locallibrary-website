@@ -1,0 +1,18 @@
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<h2>All books</h2>
+
+<ul th:if="${books.size() > 0}">
+  <li th:each="book : ${books}">
+    <a th:href="${book.url}">
+      [[${book.title}]] - [[${book.author.name}]]
+    </a>
+  </li>
+</ul>
+
+<p th:unless="${books.size() > 0}">No books</p>
+
+<a href="/book/create">Add book</a>
+
+<div th:replace="~{fragments/footer :: footer}"></div>

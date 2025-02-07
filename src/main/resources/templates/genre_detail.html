@@ -1,0 +1,22 @@
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<h2>[[${genre.name}]]</h2>
+
+<ul th:if="${books.size() > 0}">
+  <li th:each="book : ${books}">
+    <a th:href="@{'/book/' + ${book.id}}" th:text="${book.title}"></a>
+  </li>
+</ul>
+
+<p th:unless="${books.size > 0}">
+  No books
+</p>
+
+<p>
+  <a href="/genres">list</a>
+  <a th:href="${genre.url + '/update'}">update</a>
+  <a th:href="${genre.url + '/delete'}">delete</a>
+</p>
+
+<div th:replace="~{fragments/footer :: footer}"></div>

@@ -1,0 +1,18 @@
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<h2>All genres</h2>
+
+<ul th:if="${genres.size() > 0}">
+  <li th:each="genre : ${genres}">
+    <a th:href="${'/genre/' + genre.id}">
+      [[${genre.name}]]
+    </a>
+  </li>
+</ul>
+
+<p th:unless="${genres.size() > 0}">No genres</p>
+
+<a href="/genre/create">Add genre</a>
+
+<div th:replace="~{fragments/footer :: footer}"></div>

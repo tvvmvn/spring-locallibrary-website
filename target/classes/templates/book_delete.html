@@ -1,0 +1,31 @@
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<h2>Book Delete</h2>
+
+<p th:text="${book.title}"></p>
+
+<!-- You cannot delete now. -->
+<div th:if="${bookInstanceCount > 0}">
+  <h3>You should delete all of this book's instances first.</h3>
+  <a th:href="${book.url}">back</a>
+</div>
+
+<!-- You can delete now -->
+<div th:unless="${bookInstanceCount > 0}">
+  <h3>
+    Are you sure to delete this book?
+  </h3>
+  
+  <form 
+    action="#" 
+    th:object="${book}"
+    th:action="*{url + '/delete'}" 
+    method="post"
+  >
+    <button type="submit">delete</button>
+    <a th:href="*{url}">cancel</a>
+  </form>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>

@@ -1,0 +1,38 @@
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<h2>Save author</h2>
+<form 
+  action="#" 
+  th:object="${author}" 
+  th:action="@{/author/create}" 
+  method="post"
+>
+  
+  <!-- for update -->
+  <input type="hidden" th:field="*{id}">
+
+  <div>
+    <h3>Name</h3>
+    <input type="text" th:field="*{firstName}" placeholder="First name">
+    <input type="text" th:field="*{familyName}" placeholder="Last name">
+  </div>
+  
+  <div>
+    <h3>Date of birth and death</h3>
+    <input type="date" th:field="*{birthDate}">
+    <input type="date" th:field="*{deathDate}">
+  </div>
+  
+  <!-- errors -->
+  <ul style="color: red">
+    <li  th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></li>
+    <li th:if="${#fields.hasErrors('familyName')}" th:errors="*{familyName}"></li>
+  </ul>
+
+  <button type="submit">save</button>
+  <a th:if="*{id}" th:href="*{url}">cancel</a>
+  <a th:unless="*{id}" href="/authors">list</a>
+</form>
+
+<div th:replace="~{fragments/footer :: footer}"></div>

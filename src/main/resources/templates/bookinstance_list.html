@@ -1,0 +1,20 @@
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<h2>All book instances</h2>
+
+<ul th:if="${bookInstances.size() > 0}">
+  <li th:each="bookInstance : ${bookInstances}">
+    <a th:href="${bookInstance.url}">
+      <span th:text="${bookInstance.book.title}" />
+      (<span th:text="${bookInstance.book.author.name}" />)
+      - <span th:text="${bookInstance.status.getLabel()}" />
+    </a>
+  </li>
+</ul>
+
+<p th:unless="${bookInstances.size() > 0}">No book instances</p>
+
+<a href="/bookinstance/create">Add book instance</a>
+
+<div th:replace="~{fragments/footer :: footer}"></div>

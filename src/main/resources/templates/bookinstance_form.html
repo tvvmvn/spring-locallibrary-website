@@ -1,0 +1,60 @@
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<h2>Save book instance</h2>
+
+<form 
+  action="#"
+  th:object="${bookInstance}"
+  th:action="@{/bookinstance/create}"
+  method="post"
+>
+
+  <!-- for update -->
+  <input type="hidden" th:field="*{id}">
+
+  <div>
+    <label for="book">Book</label>
+    <select th:field="*{book}">
+      <option 
+        th:each="book : ${books}" 
+        th:text="${book.title}" 
+        th:value="${book.id}"
+      />
+    </select>
+  </div>
+
+  <div>
+    <label for="imprint">Imprint</label>
+    <input type="text" th:field="*{imprint}">
+  </div>
+  
+  <div>
+    <label for="status">Status</label>
+    <select th:field="*{status}">
+      <option 
+        th:each="i : ${status}" 
+        th:text="${i.getLabel()}" 
+        th:value="${i}"
+      />
+    </select>
+  </div>
+
+  <div>
+    <label for="">Due Back</label>
+    <input type="date" th:field="*{dueBack}">
+  </div>
+
+  <!-- errors -->
+  <ul>
+    <li th:if="${#fields.hasErrors('book')}" th:errors="*{book}" style="color: red"></li>
+    <li th:if="${#fields.hasErrors('imprint')}" th:errors="*{imprint}" style="color: red"></li>
+    <li th:if="${#fields.hasErrors('dueBack')}" th:errors="*{dueBack}" style="color: red"></li>
+  </ul>
+
+  <button type="submit">save</button>
+  <a th:if="*{id}" th:href="*{url}">cancel</a>
+  <a th:unless="*{id}" href="/bookinstances">list</a>
+</form>
+
+<div th:replace="~{fragments/footer :: footer}"></div>

@@ -1,0 +1,18 @@
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<h2>All authors</h2>
+
+<ul th:if="${authors.size() > 0}">
+  <li th:each="author : ${authors}">
+    <a th:href="${author.url}">
+      [[${author.name}]]
+    </a>
+  </li>
+</ul>
+
+<p th:unless="${authors.size() > 0}">No authors</p>
+
+<a href="/author/create">Add author</a>
+
+<div th:replace="~{fragments/footer :: footer}"></div>

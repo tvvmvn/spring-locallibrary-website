@@ -1,0 +1,20 @@
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<h2>Book instance Delete</h2>
+
+<h3 th:text="${bookInstance.book.title}"></h3>
+
+<p>Are you sure to delete this book?</p>
+
+<form 
+  action="#" 
+  th:object="${bookInstance}" 
+  th:action="*{url + '/delete'}" 
+  method="post"
+>
+  <input type="submit" value="delete">
+  <a th:href="*{url}">cancel</a>
+</form>
+
+<div th:replace="~{fragments/footer :: footer}"></div>

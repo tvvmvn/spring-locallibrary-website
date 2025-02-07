@@ -1,0 +1,31 @@
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<h2>Save genre</h2>
+
+<form 
+  action="#" 
+  th:object="${genre}" 
+  th:action="@{/genre/create}" 
+  method="post"
+>
+  
+  <!-- for update -->
+  <input type="hidden" th:field="*{id}">
+
+  <div>
+    <label for="name">Genre</label>
+    <input type="text" th:field="*{name}" placeholder="e.g) SF">
+  </div>
+  
+  <!-- errors -->
+  <ul style="color: red">
+    <li th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></li>
+  </ul>
+
+  <button type="submit">save</button>
+  <a th:if="*{id}" th:href="*{url}">cancel</a>
+  <a th:unless="*{id}" href="/genres">list</a>
+</form>
+
+<div th:replace="~{fragments/footer :: footer}"></div>

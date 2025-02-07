@@ -1,0 +1,31 @@
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<h2>Author Delete</h2>
+
+<p>[[${author.name}]]</p>
+
+<!-- You cannot delete now. -->
+<div th:if="${bookCount > 0}">
+  <h3>You should delete all of this author's books first.</h3>
+  <a th:href="${author.url}">back</a>
+</div>
+
+<!-- You can delete now -->
+<div th:unless="${bookCount > 0}">
+  <h3>
+    Are you sure to delete this author?
+  </h3>
+  
+  <form 
+    action="#" 
+    th:object="${author}"
+    th:action="*{url + '/delete'}" 
+    method="post"
+  >
+    <input type="submit" value="delete">
+    <a th:href="*{url}">cancel</a>
+  </form>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
