@@ -1,0 +1,51 @@
+
+<p th:replace="~{fragments/header :: header}"></p>
+
+<h2>Save book instance</h2>
+
+<form 
+  action="#"
+  th:object="${bookInstance}"
+  th:action="@{/bookinstance/save}"
+  method="post"
+>
+
+  <!-- for update -->
+  <input type="hidden" th:field="*{id}">
+
+  <section>
+    <p th:text="*{book.title}"></p>
+    <input type="hidden" th:field="*{book.id}">
+  </section>
+
+  <section>
+    <p th:text="*{imprint}"></p>
+    <input type="hidden" th:field="*{imprint}">
+  </section>
+
+  <section>
+    <p>
+      <label for="status">Status</label>
+      <select th:field="*{status}">
+        <option 
+          th:each="i : ${status}" 
+          th:text="${i.getLabel()}" 
+          th:value="${i}"
+        />
+      </select>
+    </p>
+  </section>
+
+  <section>
+    <p>
+      <label for="">Due Back</label>
+      <input type="date" th:field="*{dueBack}">
+    </p>
+  </section>
+
+  <p>
+    <button type="submit">save</button>
+  </p>
+</form>
+
+<div th:replace="~{fragments/footer :: footer}"></div>

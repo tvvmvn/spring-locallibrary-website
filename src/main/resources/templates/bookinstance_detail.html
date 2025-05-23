@@ -1,0 +1,26 @@
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<h2>Book Instance Details</h2>
+<h3 th:text="${bookInstance.book.title}"></h3>
+
+<section>
+  <h3>Imprint</h3>
+  <p th:text="${bookInstance.imprint}"></p>
+</section>
+
+<section>
+  <h3>Status</h3>
+  <p th:text="${bookInstance.status.getLabel()}"></p>
+</section>
+
+<section th:if="${bookInstance.status.getLabel() == 'Loaned'}">
+  <h3>Due Back</h3>
+  <p th:text="${#temporals.format(bookInstance.dueBack, 'yyyy.MM.dd')}"></p>
+</section>
+
+<p>
+  <a th:href="${bookInstance.url + '/update'}">Update</a>
+</p>
+
+<div th:replace="~{fragments/footer :: footer}"></div>

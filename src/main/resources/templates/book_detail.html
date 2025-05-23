@@ -1,0 +1,46 @@
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<h2>Book Details</h2>
+<h3 th:text="${book.title}"></h3>
+
+<section>
+  <h3>Summary</h3>
+  <p th:text="${book.summary}"></p>
+</section>
+
+<section>
+  <h3>Author</h3>
+  <p>
+    <a th:href="${book.author.url}">[[${book.author.getName()}]]</a>
+  </p>
+</section>
+
+<section>
+  <h3>Genre</h3>
+  <ul>
+    <li th:each="g : ${book.genre}">
+      <a th:href="${g.url}">[[${g.name}]]</a>
+    </li>
+  </ul>
+</section>
+  
+<section>
+  <h3>ISBN</h3>
+  <p th:text="${book.isbn}"></p>
+</section>
+
+<section>
+  <h3>Instances of this book</h3>
+  <ul th:if="${bookInstances.size() > 0}">
+    <li th:each="bookInstance : ${bookInstances}">
+      <a th:href="${bookInstance.url}">
+        [[${bookInstance.book.title}]] - [[${bookInstance.status.getLabel()}]]
+      </a>
+    </li>
+  </ul>
+
+  <p th:unless="${bookInstances.size() > 0}">No instances</p>
+</section>
+
+<div th:replace="~{fragments/footer :: footer}"></div>

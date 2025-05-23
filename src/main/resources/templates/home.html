@@ -1,0 +1,49 @@
+<div th:replace="~{fragments/header :: header}"></div>
+
+<h2>Home</h2>
+<p>
+  <i>
+    "Books are the mirrors of the soul."
+    - Virginia Woolf
+  </i>
+</p>
+
+<img src="/main.webp" width="400" alt="main-image">
+
+<section>
+  <h3>All books</h3>
+
+  <ul th:if="${books.size() > 0}">
+    <li th:each="book : ${books}">
+      <a th:href="${book.url}">
+        [[${book.title}]] - [[${book.author.name}]]
+      </a>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3>All authors</h3>
+
+  <ul th:if="${authors.size() > 0}">
+    <li th:each="author : ${authors}">
+      <a th:href="${author.url}">
+        [[${author.name}]]
+      </a>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3>All genres</h3>
+
+  <ul th:if="${genres.size() > 0}">
+    <li th:each="genre : ${genres}">
+      <a th:href="${'/genre/' + genre.id}">
+        [[${genre.name}]]
+      </a>
+    </li>
+  </ul>
+</section>
+
+<div th:replace="~{fragments/footer :: footer}"></div>

@@ -1,0 +1,21 @@
+<div th:replace="~{fragments/header :: header}"></div>
+
+
+<form action="/search" method="get">
+  <h2>Search books</h2>
+  <input type="text" name="keyword" placeholder="Book Title" required>
+  <button type="submit">Search</button>
+</form>
+
+<!-- displayed on searching -->
+<section th:if="${keyword}">
+  <div th:unless="${results.isEmpty()}">
+    <h3>Results</h3>
+    <div th:each="result : ${results}">
+      <a th:href="${result.url}" th:text="${result.title}"></a>
+    </div>
+  </div>
+  <p th:if="${results.isEmpty()}">No books found.</p>
+</section>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
