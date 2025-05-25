@@ -30,8 +30,8 @@ class LoadDatabase {
   CommandLineRunner initDatabase(AuthorRepository authorRepository, BookRepository bookRepository, BookInstanceRepository bookInstanceRepository, GenreRepository genreRepository) {
 
     return args -> {
+      
       // Seed database only for once
-
       if (genreRepository.count() > 0) return;
       
       // Genres
